@@ -1,0 +1,109 @@
+# Hover at the initial point using full 3D control
+
+INCLUDE QuadPhysicalParams.txt
+
+# simulation setup
+Sim.RunMode = Repeat
+Sim.EndTime = 2
+Sim.Vehicle1 = Quad1
+Sim.Vehicle2 = Quad2
+
+# Controller selection
+Quad.ControlType = QuadControl
+Quad.ControlConfig = QuadControlParams
+
+# reference trajectory (just the starting position)
+QuadControlParams.Trajectory=0,0,-1
+
+# initial conditions
+Quad.InitialPos=0.5,0,-1
+Quad.InitialVel=0,0,0
+Quad.InitialYPR=0,0,0
+Quad.InitialOmega=0,0,0
+
+# graphing commands
+Commands.1=AddGraph1.Quad1.Pos.X
+Commands.2=AddGraph1.AbsThreshold(Quad1.Pos.X,0.05,0.5)
+Commands.3=AddGraph1.Quad2.Pos.X
+Commands.4=AddGraph2.Quad1.Yaw
+Commands.5=AddGraph2.Quad2.Yaw
+Commands.6=AddGraph1.WindowThreshold(Quad1.Pos.X,0.1,1.25)
+Commands.7=AddGraph1.WindowThreshold(Quad2.Pos.X,0.1,1.25)
+Commands.8=AddGraph2.WindowThreshold(Quad2.Yaw,0.1,1.0)
+
+INCLUDE QuadControlParams.txt
+INCLUDE Simulation.txt
+
+[Quad1:Quad]
+InitialPos=0.1,-1,-1
+TrajectoryOffset=0,-1,0
+# Physical properties
+Mass = 0.5
+
+L = 0.17
+Ixx = 0.0023
+Iyy = 0.0023
+Izz = 0.0046
+kappa = 0.016
+maxMotorThrust = 4.5
+
+# Position control gains
+kpPosXY = 1.0
+kpPosZ = 3.0
+KiPosZ = 4
+
+# Velocity control gains
+kpVelXY = 12
+kpVelZ = 15
+
+# Angle control gains
+kpBank = 8
+kpYaw = 0.6
+
+# Angle rate gains
+kpPQR = 90, 90, 8.0
+
+# limits
+maxAscentRate = 5
+maxDescentRate = 2
+maxSpeedXY = 5
+maxHorizAccel = 12
+maxTiltAngle = .7
+
+[Quad2:Quad]
+InitialPos=0.,-1.,-1.1
+#InitialYPR=.1,0.3,0.5
+TrajectoryOffset=0,-1,0
+
+
+Mass = 0.5
+
+L = 0.17
+Ixx = 0.0023
+Iyy = 0.0023
+Izz = 0.0046
+kappa = 0.016
+maxMotorThrust = 4.5
+
+# Position control gains
+kpPosXY = 4.0
+kpPosZ = 3.0
+KiPosZ = 90
+
+# Velocity control gains
+kpVelXY = 8
+kpVelZ = 10
+
+# Angle control gains
+kpBank = 90
+kpYaw = 60
+
+# Angle rate gains
+kpPQR = 90, 90, 80.0
+
+# limits
+maxAscentRate = 5
+maxDescentRate = 2
+maxSpeedXY = 5
+maxHorizAccel = 12
+maxTiltAngle = 5.7

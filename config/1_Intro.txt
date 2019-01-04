@@ -1,0 +1,43 @@
+# Introduction: open-loop hover
+
+INCLUDE QuadPhysicalParams.txt
+
+# simulation setup
+Sim.RunMode = Repeat
+Sim.EndTime = 1
+Sim.Vehicle1 = Quad
+
+# Controller selection
+Quad.ControlType = QuadControl
+Quad.ControlConfig = QuadControlParams
+
+# reference trajectory (just the starting position)
+QuadControlParams.Trajectory=0,0,-1
+
+# initial conditions
+#Quad.InitialPos=-1,-2,-1
+#Quad.InitialVel=5,5,5
+#Quad.InitialYPR=30,50,50
+#Quad.InitialOmega=30,30,50
+
+Quad.InitialPos=0,0,-1
+Quad.InitialVel=0,0,0
+Quad.InitialYPR=0,0,0
+Quad.InitialOmega=0,0,0
+
+# graphing commands
+Commands.1=AddGraph1.Quad.Pos.Z
+Commands.2=AddGraph1.WindowThreshold(Quad.PosFollowErr,.5,.8)
+
+INCLUDE QuadControlParams.txt
+INCLUDE Simulation.txt
+
+# make sure the controller is off
+[QuadControlParams]
+kpPosXY = 1.0
+kpPosZ = 0.8
+kpVelXY = 0
+kpVelZ = 0
+kpBank = 0
+kpYaw = 10
+kpPQR = 0,0,0
