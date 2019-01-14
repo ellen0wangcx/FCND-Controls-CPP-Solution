@@ -17,8 +17,12 @@ QuadControlParams.Trajectory=0,0,-1
 # initial conditions
 Quad.InitialPos=0,0,-1
 Quad.InitialVel=0,0,0
-Quad.InitialYPR=0,0,0
+#Quad.InitialYPR=5,5,0.
+#Quad.InitialOmega=0,0,0
+
+Quad.InitialYPR=0,0,0.
 Quad.InitialOmega=30,0,0
+
 
 # graphing commands
 Commands.1=AddGraph1.Quad.Roll
