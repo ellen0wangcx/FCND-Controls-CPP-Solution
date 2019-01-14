@@ -21,7 +21,7 @@ When the scenario is passing the test, you should see this line on the standard 
 PASS: ABS(Quad.PosFollowErr) was less than 0.500000 for at least 0.800000 seconds
 ```
 
-![C++ Scenario 1](./images/1_Intro.gif)
+![C++ 1_Intro](./images/1_Intro.gif)
 
 This video is [1_Intro_new.mov](./videos/1_Intro_new.mov)
 
@@ -81,7 +81,7 @@ You should also see the vehicle angle (Roll) get controlled to 0.
 kpBank = 12 
 
 
-![Roll and pitch P controller](./images/2_AttitudeControl.gif)
+![2_AttitudeControl](./images/2_AttitudeControl.gif)
 
 When the scenario is passing the test, you should see this line on the standard output:  
 ```
